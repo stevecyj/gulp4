@@ -27,7 +27,6 @@ exports.hello4CommonJS = hello4CommonJS; */
 
 import gulp from "gulp"; // ES6 引入模組寫法
 
-export function hello4ES6(cb) {
-  console.log("hello gulp 4.0, ES6 format");
-  cb();
+export function copyHTML() {
+  return gulp.src("./source/**/*.html").pipe(gulp.dest("./public"));
 }
