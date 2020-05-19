@@ -26,7 +26,24 @@ exports.hello4CommonJS = hello4CommonJS; */
 // 在 CLI 輸入 gulp hello4ES6，會印出錯誤訊息
 
 import gulp from "gulp"; // ES6 引入模組寫法
+import del from "del"; //
 
 export function copyHTML() {
   return gulp.src("./source/**/*.html").pipe(gulp.dest("./public"));
+}
+
+export function clean() {
+  return del(["./public", "./.tmp"]);
+}
+
+export function ejs() {
+  return gulp
+    .src(["./source/**/*.ejs", "./source/**/*.html"])
+    .pipe($.frontMatter())
+    .pipe(
+      $.layout((file) => {
+        return file.frontMatter;
+      })
+    )
+    .pipe(gulp.dest("./public"));
 }
